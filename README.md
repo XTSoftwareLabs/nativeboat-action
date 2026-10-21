@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
-      - uses: XTSoftwareLabs/nativeboat-action@main
+      - uses: XTSoftwareLabs/nativeboat-action@v1
         id: nativeboat
         with:
           project-path: apps/desktop-electron
@@ -43,9 +43,9 @@ available, for example with `actions/setup-node` and `pnpm/action-setup` for a
 pnpm project. Projects whose packaging scripts build helper programs also need
 the corresponding build tools. Installing dependencies before the action works too.
 
-The example tracks this action's `main` branch. Pin the action to a commit SHA for
-reproducible CI, and pin the compiler with `version` using an exact published
-release tag, including its `v` prefix.
+`@v1` follows the latest `v1.x.y` release of this action. Pin a full release tag
+such as `@v1.0.0`, or a commit SHA, for reproducible CI, and pin the compiler with
+`version` using an exact published release tag, including its `v` prefix.
 
 ## Inputs
 
@@ -94,3 +94,6 @@ The action runs directly from `src/` with the GitHub runner's Node.js 24 runtime
 It uses only Node.js built-ins. Tests run on Windows and Linux. The **Smoke
 build** workflow compiles the included Electron fixture using a published compiler
 release; run it manually with the desired release tag.
+
+Releases use `vX.Y.Z` tags. Publishing a stable release runs the **Update major
+tag** workflow, which moves the `vX` tag to that release.
