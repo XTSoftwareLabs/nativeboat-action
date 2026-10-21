@@ -1,0 +1,41 @@
+name: Smoke build
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published NativeBoat release tag, or latest
+        required: true
+        default: latest
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - uses: ./
+        id: nativeboat
+        with:
+          version: ${{ inputs.version }}
+          project-path: test/fixtures/electron app
+          analyze: 'true'
+      - name: Verify executable
+        shell: pwsh
+        env:
+          NATIVEBOAT_EXECUTABLE: ${{ steps.nativeboat.outputs.executable }}
+        run: |
+          if (-not $env:NATIVEBOAT_EXECUTABLE -or -not (Test-Path -LiteralPath $env:NATIVEBOAT_EXECUTABLE)) {
+            throw 'The build produced no executable.'
+          }
+          Get-Item -LiteralPath $env:NATIVEBOAT_EXECUTABLE | Format-List Name, Length, VersionInfo
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nativeboat-smoke
+          path: ${{ steps.nativeboat.outputs.output-path }}
+          if-no-files-found: error

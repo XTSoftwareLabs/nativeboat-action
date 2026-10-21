@@ -1,0 +1,9 @@
+{
+  "name": "nativeboat-action-smoke",
+  "version": "1.0.0",
+  "description": "NativeBoat Action smoke fixture",
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}

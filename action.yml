@@ -1,0 +1,47 @@
+name: NativeBoat Build
+author: XTSoftwareLabs
+description: Compile an Electron project into a native Windows application with NativeBoat.
+branding:
+  icon: package
+  color: blue
+inputs:
+  project-path:
+    description: Electron project directory, relative to the checked-out repository.
+    required: false
+    default: '.'
+  version:
+    description: NativeBoat release tag, or latest for the newest release (stable preferred).
+    required: false
+    default: latest
+  output-path:
+    description: Build output directory, relative to the Electron project.
+    required: false
+    default: native-dist
+  work-dir:
+    description: Directory for NativeBoat's build copies of projects whose dependencies are not installed. Empty uses the compiler default.
+    required: false
+    default: ''
+  sign:
+    description: Command that signs the executable, such as signtool sign /a /fd SHA256 {file}. Empty skips signing.
+    required: false
+    default: ''
+  analyze:
+    description: Print NativeBoat's support report for the project before building.
+    required: false
+    default: 'false'
+  token:
+    description: GitHub token used to query release metadata.
+    required: false
+    default: ${{ github.token }}
+outputs:
+  output-path:
+    description: Absolute build output directory for artifact uploads.
+  executable:
+    description: Absolute path to the built executable when the output directory contains exactly one.
+  compiler-path:
+    description: Absolute path to the downloaded compiler executable.
+  version:
+    description: Resolved NativeBoat release tag.
+runs:
+  using: node24
+  main: src/index.mjs

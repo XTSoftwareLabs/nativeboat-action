@@ -1,0 +1,18 @@
+{
+  "name": "nativeboat-action",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "GitHub Action for compiling Electron projects with NativeBoat on Windows",
+  "scripts": {
+    "test": "node --test test/action.test.mjs",
+    "check": "node --check src/action.mjs && node --check src/index.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "yaml": "^2.8.1"
+  }
+}
