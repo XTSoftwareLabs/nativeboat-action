@@ -82,6 +82,35 @@ Downloads use the public release URLs. The action checks the asset size and
 GitHub's SHA-256 digest when present, and the `SHA256SUMS.txt` entry when that
 file is included. A mismatch fails before extraction.
 
+## License
+
+This action is released under the [MIT License](LICENSE). The NativeBoat compiler it
+downloads is a separate product under its own
+[license](https://github.com/XTSoftwareLabs/nativeboat-release/blob/main/LICENSE.md):
+it is free for open source projects and for non-commercial projects, while
+closed-source commercial use needs a license from
+[nativeboat@xtsoftwarelabs.com](mailto:nativeboat@xtsoftwarelabs.com). Using this
+action means using the compiler under those terms.
+
+## Privacy
+
+The action collects no personal data and sends no telemetry. It contacts only
+GitHub: the GitHub API, with the `token` input, to read release metadata from
+`XTSoftwareLabs/nativeboat-release`, and that repository's release downloads,
+without a token. The token is not passed to the compiler or to the project's
+build commands. Installing the project's dependencies contacts the package
+registries the project uses. The compiler's own handling of data is governed by
+its license.
+
+## Support
+
+Report problems with this action in its
+[issues](https://github.com/XTSoftwareLabs/nativeboat-action/issues). Report
+compiler problems in the
+[NativeBoat release issues](https://github.com/XTSoftwareLabs/nativeboat-release/issues),
+and send licensing questions to
+[nativeboat@xtsoftwarelabs.com](mailto:nativeboat@xtsoftwarelabs.com).
+
 ## Development
 
 ```powershell
