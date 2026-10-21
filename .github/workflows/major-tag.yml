@@ -1,0 +1,26 @@
+name: Update major tag
+
+# Points the major version tag (v1, v2, ...) at each published stable release so
+# that `uses: XTSoftwareLabs/nativeboat-action@v1` picks up the latest v1.x.y.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Move major tag
+        shell: pwsh
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if ($env:TAG -notmatch '^(v\d+)\.\d+\.\d+$') { throw "Release tag '$env:TAG' is not vX.Y.Z." }
+          $major = $Matches[1]
+          git tag -f $major "$env:TAG^{commit}"
+          git push -f origin "refs/tags/${major}"
