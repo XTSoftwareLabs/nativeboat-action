@@ -6,7 +6,7 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { spawn } from 'node:child_process';
 
-const repository = 'XTSoftwareLabs/nativeboat-release';
+const repository = 'XTSoftwareLabs/nativeboat';
 const releasesUrl = `https://api.github.com/repos/${repository}/releases`;
 const archivePattern = /^nativeboat-[0-9a-z][0-9a-z.-]*-windows-x64\.zip$/i;
 
@@ -35,7 +35,7 @@ async function githubApi(url, token, fetchImpl) {
 }
 
 // `latest` prefers the newest stable release and falls back to the newest
-// prerelease while the release repository only publishes previews.
+// prerelease while the NativeBoat repository only publishes previews.
 export async function resolveRelease(version, token, fetchImpl = fetch) {
   const url = version === 'latest' ? `${releasesUrl}?per_page=50` : `${releasesUrl}/tags/${encodeURIComponent(version)}`;
   const response = await githubApi(url, token, fetchImpl);

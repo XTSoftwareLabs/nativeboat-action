@@ -15,7 +15,7 @@ const archiveName = 'nativeboat-1.2.3-windows-x64.zip';
 function asset(name, data, extra = {}) {
   return {
     name,
-    browser_download_url: `https://github.com/XTSoftwareLabs/nativeboat-release/releases/download/v1.2.3/${name}`,
+    browser_download_url: `https://github.com/XTSoftwareLabs/nativeboat/releases/download/v1.2.3/${name}`,
     size: Buffer.byteLength(data),
     digest: `sha256:${sha256(data)}`,
     ...extra,
@@ -113,7 +113,7 @@ test('latest prefers the newest stable release and sends the token only to the A
     ]);
   };
   assert.deepEqual(await resolveRelease('latest', 'secret', fetchImpl), stable);
-  assert.equal(requests[0].url, 'https://api.github.com/repos/XTSoftwareLabs/nativeboat-release/releases?per_page=50');
+  assert.equal(requests[0].url, 'https://api.github.com/repos/XTSoftwareLabs/nativeboat/releases?per_page=50');
   assert.equal(requests[0].options.headers['User-Agent'], 'nativeboat-action');
   assert.equal(requests[0].options.headers.Authorization, 'Bearer secret');
 });
@@ -133,7 +133,7 @@ test('release lookup preserves exact prerelease tags and supports an empty token
   const fixture = packageFixture();
   const requests = [];
   await resolveRelease('0.1.0-alpha.1', '', fixtureFetch(fixture, requests));
-  assert.equal(requests[0].url, 'https://api.github.com/repos/XTSoftwareLabs/nativeboat-release/releases/tags/0.1.0-alpha.1');
+  assert.equal(requests[0].url, 'https://api.github.com/repos/XTSoftwareLabs/nativeboat/releases/tags/0.1.0-alpha.1');
   assert.equal(requests[0].options.headers.Authorization, undefined);
 });
 
