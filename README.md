@@ -2,7 +2,7 @@
 
 Compile an Electron project into a native Windows application in GitHub Actions.
 The action downloads the compiler and runtime from
-[XTSoftwareLabs/nativeboat-release](https://github.com/XTSoftwareLabs/nativeboat-release),
+[XTSoftwareLabs/nativeboat](https://github.com/XTSoftwareLabs/nativeboat),
 then runs the compiler's `build` command on the configured project directory.
 
 ## Usage
@@ -85,18 +85,16 @@ file is included. A mismatch fails before extraction.
 ## License
 
 This action is released under the [MIT License](LICENSE). The NativeBoat compiler it
-downloads is a separate product under its own
-[license](https://github.com/XTSoftwareLabs/nativeboat-release/blob/main/LICENSE.md):
-it is free for open source projects and for non-commercial projects, while
-closed-source commercial use needs a license from
-[nativeboat@xtsoftwarelabs.com](mailto:nativeboat@xtsoftwarelabs.com). Using this
-action means using the compiler under those terms.
+downloads is a separate open source project, also under the
+[MIT License](https://github.com/XTSoftwareLabs/nativeboat/blob/main/LICENSE).
+It bundles third-party software that keeps its own licenses; see its
+[third-party notices](https://github.com/XTSoftwareLabs/nativeboat/blob/main/THIRD-PARTY-NOTICES.md).
 
 ## Privacy
 
 The action collects no personal data and sends no telemetry. It contacts only
 GitHub: the GitHub API, with the `token` input, to read release metadata from
-`XTSoftwareLabs/nativeboat-release`, and that repository's release downloads,
+`XTSoftwareLabs/nativeboat`, and that repository's release downloads,
 without a token. The token is not passed to the compiler or to the project's
 build commands. Installing the project's dependencies contacts the package
 registries the project uses. The compiler's own handling of data is governed by
@@ -107,7 +105,7 @@ its license.
 Report problems with this action in its
 [issues](https://github.com/XTSoftwareLabs/nativeboat-action/issues). Report
 compiler problems in the
-[NativeBoat release issues](https://github.com/XTSoftwareLabs/nativeboat-release/issues),
+[NativeBoat issues](https://github.com/XTSoftwareLabs/nativeboat/issues),
 and send licensing questions to
 [nativeboat@xtsoftwarelabs.com](mailto:nativeboat@xtsoftwarelabs.com).
 
